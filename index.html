@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ರಾಧೇ..ರಾಧೇ ..!!</title>
+
+<style>
+body {
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins", sans-serif;
+    background: linear-gradient(135deg, #111111, #eeeeee);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    color: #fff;
+}
+
+
+
+    .heart, .petal {
+        position: absolute;
+        font-size: 24px;
+    }
+
+    /* Soft glowing aura */
+    .glow {
+        filter: drop-shadow(0 0 10px rgba(255,255,255,0.9));
+    }
+
+    /* Fade in/out floating */
+    @keyframes fadeFloat {
+        0% { opacity: 0; transform: translateY(20px) scale(0.9); }
+        30% { opacity: 1; }
+        70% { opacity: 1; }
+        100% { opacity: 0; transform: translateY(-200px) scale(1.3); }
+    }
+
+    /* Heartbeat effect */
+    .heartbeat {
+        animation: heartPulse 2s infinite ease-in-out;
+    }
+
+    @keyframes heartPulse {
+        0% { transform: scale(1); }
+        30% { transform: scale(1.2); }
+        60% { transform: scale(1); }
+        100% { transform: scale(1.15); }
+    }
+
+    /* Falling petals */
+    @keyframes fall {
+        0% { transform: translateY(-50px) rotate(0deg); opacity: 0; }
+        20% { opacity: 1; }
+        100% { transform: translateY(700px) rotate(360deg); opacity: 0; }
+    }
+
+    .petal {
+        font-size: 22px;
+        animation: fall 6s linear infinite;
+        opacity: 0;
+    }
+
+    /* Floating hearts old animation blended */
+    @keyframes float {
+        0% { transform: translateY(0) scale(1); opacity: 1; }
+        100% { transform: translateY(-800px) scale(1.8); opacity: 0; }
+    }
+
+    /* Container */
+    .container {
+        background: rgba(255, 255, 255, 0.15);
+        padding: 30px;
+        width: 330px;
+        border-radius: 20px;
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+        backdrop-filter: blur(10px);
+        text-align: center;
+        animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    h1 {
+        font-size: 28px;
+        margin-bottom: 10px;
+        text-shadow: 0 0 10px rgba(255,255,255,0.8);
+    }
+
+    .desc {
+        font-size: 14px;
+        margin-bottom: 25px;
+        opacity: 0.9;
+    }
+
+    input {
+        width: 80%;
+        padding: 10px;
+        border-radius: 10px;
+        border: none;
+        outline: none;
+        margin-bottom: 15px;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    button {
+        width: 90%;
+        padding: 10px;
+        border-radius: 12px;
+        border: none;
+        background: #ff4b6e;
+        color: #fff;
+        font-size: 17px;
+        cursor: pointer;
+        transition: 0.3s;
+        margin-top: 10px;
+    }
+
+    button:hover {
+        background: #ff2d55;
+        transform: scale(1.05);
+    }
+</style>
+</head>
+
+<body>
+
+<!-- Existing hearts + upgraded animations -->
+<div class="heart glow heartbeat" style="left:15%; animation: fadeFloat 6s infinite 1.5s;">🌹</div>
+<div class="heart glow" style="left:25%; animation: fadeFloat 6s infinite 3.2s;">💓</div>
+<div class="heart glow heartbeat" style="left:40%; animation: fadeFloat 6s infinite 0.8s;">💞</div>
+<div class="heart glow" style="left:60%; animation: fadeFloat 6s infinite 2.4s;">💘</div>
+<div class="heart glow" style="left:80%; animation: fadeFloat 6s infinite 1.1s;">💝</div>
+<div class="heart glow" style="left:50%; animation: fadeFloat 6s infinite 4s;">🌸</div>
+<div class="heart glow heartbeat" style="left:70%; animation: fadeFloat 6s infinite 5s;">💗</div>
+<div class="heart glow" style="left:30%; animation: fadeFloat 6s infinite 3.8s;">✨</div>
+<div class="heart glow" style="left:85%; animation: fadeFloat 6s infinite 2.8s;">🌙</div>
+<div class="heart glow" style="left:12%; animation: fadeFloat 6s infinite 4.5s;">💖</div>
+
+<!-- Falling petals -->
+<div class="petal" style="left:10%; animation-delay:0s;">🌸</div>
+<div class="petal" style="left:25%; animation-delay:1.2s;">🌸</div>
+<div="petal" style="left:45%; animation-delay:0.7s;">🌸</div>
+<div class="petal" style="left:60%; animation-delay:1.9s;">🌸</div>
+<div class="petal" style="left:80%; animation-delay:0.4s;">🌸</div>
+
+<div class="container">
+    <h1>A Secret Only Your Soul Can Understand ✨</h1>
+    <p class="desc">Not everyone gets a key to my world… but you do..!!</p>
+
+    <input type="password" id="password" placeholder="">
+    <button onclick="checkPassword()">Unlock</button>
+
+    <p style="margin-top:10px; font-size:12px; color:#2E2E2E;">Try… until your soul feels the click</p>
+</div>
+
+<script>
+    document.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") checkPassword();
+    });
+
+    function checkPassword() {
+        let pass = document.getElementById("password").value;
+        if (pass === "13062004") {
+            window.location.href = "questions.html";
+        } else {
+            alert("Try… until souls connect 💔");
+        }
+    }
+</script>
+
+</body>
+</html>

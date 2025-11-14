@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ರಾಧೇ..ರಾಧೇ ..!!</title>
+
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background: linear-gradient(135deg, #000, #fff);
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-family: "Poppins", sans-serif;
+        color: white;
+        overflow: hidden;
+        flex-direction: column;
+    }
+
+    /* Heart container */
+    .heart-wrapper {
+        width: 180px;
+        height: 180px;
+        margin-bottom: 25px;
+        position: relative;
+    }
+
+    /* Red fill */
+    #heartFill {
+        transition: 0.6s ease;
+    }
+
+    /* Outline (hidden until final step) */
+    #heartOutline {
+        transition: 0.6s ease;
+        opacity: 0; /* hidden initially */
+    }
+
+    .questionBox {
+        text-align: center;
+        padding: 20px;
+        font-size: 22px;
+        color: #fff;
+    }
+
+    .btn-area {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        position: relative;
+    }
+
+    button {
+        padding: 12px 28px;
+        font-size: 18px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .yes {
+        background: #ff4b6e;
+        color: white;
+    }
+
+    .yes:hover {
+        transform: scale(1.1);
+        background: #ff2d55;
+    }
+
+    .no {
+        background: #555;
+        color: white;
+        position: absolute;
+    }
+
+</style>
+</head>
+<body>
+
+<!-- ❤️ Perfect Heart with Mask -->
+<div class="heart-wrapper">
+<svg viewBox="0 0 200 200" width="180" height="180">
+
+    <!-- Mask for perfect heart shape -->
+    <defs>
+        <mask id="heartMask">
+            <path d="
+                M100 170
+                C20 110, 20 60, 60 40
+                C90 25, 110 40, 100 60
+                C90 40, 110 25, 140 40
+                C180 60, 180 110, 100 170
+            " fill="white"/>
+        </mask>
+    </defs>
+
+    <!-- FILL rectangle (clipped to heart) -->
+    <rect id="heartFill" x="0" y="200" width="200" height="0" fill="red" mask="url(#heartMask)"></rect>
+
+    <!-- Outline (appears only after last question) -->
+    <path id="heartOutline"
+          d="
+            M100 170
+            C20 110, 20 60, 60 40
+            C90 25, 110 40, 100 60
+            C90 40, 110 25, 140 40
+            C180 60, 180 110, 100 170
+          "
+          fill="none"
+          stroke="white"
+          stroke-width="6"/>
+</svg>
+</div>
+
+<div id="questionArea"></div>
+
+<script>
+
+let questions = [
+    "Do you believe hearts can connect without speaking?",
+    "Do you feel something special when you think of me?",
+    "Do you think souls can understand what words can’t say?",
+    "Do you feel your mood changes when I talk to you?",
+    "Do you think our bond is becoming deeper?",
+    "Do you feel I understand you more than others do?",
+    "Do you want to go deeper into my soul?"
+];
+
+let index = 0;
+let fillHeight = 0;
+
+function loadQuestion() {
+    document.getElementById("questionArea").innerHTML = `
+        <div class='questionBox'>
+            ${questions[index]}
+            <div class="btn-area">
+                <button class="yes" onclick="nextQuestion()">Yes</button>
+                <button class="no" id="noBtn" onmouseover="moveNo()">No</button>
+            </div>
+        </div>
+    `;
+}
+
+function nextQuestion() {
+
+    // Increase fill amount
+    fillHeight += 200 / questions.length;
+    if (fillHeight > 200) fillHeight = 200;
+
+    // Adjust the red rectangle fill
+    const rect = document.getElementById("heartFill");
+    rect.setAttribute("height", fillHeight);
+    rect.setAttribute("y", 200 - fillHeight);
+
+    index++;
+
+    if (index < questions.length) {
+        loadQuestion();
+    } else {
+        // Show outline only at final
+        document.getElementById("heartOutline").style.opacity = "1";
+
+        setTimeout(() => {
+            window.location.href = "final.html";
+        }, 1200);
+    }
+}
+
+function moveNo() {
+    const btn = document.getElementById("noBtn");
+    const maxX = window.innerWidth - 150;
+    const maxY = window.innerHeight - 80;
+
+    btn.style.position = "fixed";
+    btn.style.left = Math.random() * maxX + "px";
+    btn.style.top = Math.random() * maxY + "px";
+}
+
+loadQuestion();
+
+</script>
+
+</body>
+</html>
